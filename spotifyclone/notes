@@ -1,0 +1,22 @@
+created a class to invert the swg color :
+if you pass 1 it invert the color if you pass 0 it wil remain same 
+
+he filter property in CSS is used to apply visual effects to an element.
+It can be used to change the appearance of an element, such as inverting its colors, blurring it, or applying a drop shadow.
+
+
+.invert{
+    filter:invert(1)
+}
+------------------------------------------------------------------------------
+
+positon property in CSS 
+
+relative- ts position can be adjusted using the top, right, bottom, and left properties. from its actual positon 
+eg : top : 10px; left: 20px;
+
+absolute: change position according to its parent element
+top 0;  left:0;  bottom 0;
+
+
+link: https://youtube.com/shorts/jyi8s_AyxKA?si=mBKPL-45GmIHRyxe
