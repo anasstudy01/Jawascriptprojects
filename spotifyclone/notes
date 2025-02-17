@@ -10,6 +10,8 @@ It can be used to change the appearance of an element, such as inverting its col
 }
 ------------------------------------------------------------------------------
 
+
+
 positon property in CSS 
 
 relative- ts position can be adjusted using the top, right, bottom, and left properties. from its actual positon 
@@ -20,3 +22,37 @@ top 0;  left:0;  bottom 0;
 
 
 link: https://youtube.com/shorts/jyi8s_AyxKA?si=mBKPL-45GmIHRyxe
+---------------------------------------------------------------------
+
+
+
+object.fit:  to set the image accoding to parent div  width
+img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+fill: The image is resized to fill the entire container, even if it means losing its aspect ratio.
+
+
+contain: The image is resized to fit within the container while maintaining its aspect ratio.
+
+cover: The image is resized to cover the entire container while maintaining its aspect ratio. If the image is larger than the container, it will be cropped.
+
+none: The image is not resized.
+scale-down: The image is resized to fit within the container while maintaining its aspect ratio, but only if the image is larger than the container.
+
+
+---------------------------------------------------------------------
+
+
+
+
+flex-wrap: The flex-wrap property in CSS is used to specify whether a flex container should wrap its items onto multiple lines or not.
+
+------------------------------------------------------------------------
+
+transition: transition property is used to add animation to the element when it is hovered or clicked.
+eg : transition: background-color 0.5s ease-in-out;
+transition: property duration timing-function delay;
