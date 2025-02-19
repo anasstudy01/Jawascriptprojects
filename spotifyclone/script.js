@@ -1,4 +1,5 @@
 console.log("hii start the code");
+let currentsong = new Audio();
 
 async function getsongs() {
   console.log("hii start the code");
@@ -18,8 +19,19 @@ async function getsongs() {
   }
   return songs;
 }
+
+const playMusic = async (songname) => {
+  // get the song
+  // let audio = new Audio("/songs/"+ songname);
+  currentsong.src = "/songs/" + songname;
+  currentsong.play();
+  document.querySelector(".songsinfo").innerHTML = songname;
+  document.querySelector(".songstime").innerHTML = "00:00 / 00:00";
+  console.log("the song is " +songname);
+  play.src = "pause.svg";
+};
+
 async function main() {
-    let currentsong ;
   // get the list of all song
   const songs = await getsongs();
   console.log(songs);
@@ -44,20 +56,41 @@ async function main() {
                 </div>
               
         </li>`;
-    
-        // attach an event listener to each songs
-       
-    }
+
+    // attach an event listener to each songs
+    Array.from(
+      document.querySelector(".songslist").getElementsByTagName("li")
+    ).forEach((e) => {
+      // console.log(e.getElementsByTagName("div")[0].innerText); print both song name and artist
+      e.addEventListener("click", () => {
+        console.log(e.querySelector("div.songname").innerText);
+        // play the song
+        playMusic(e.querySelector("div.songname").innerText);
+      });
+    });
+  }
 
   //play the fist song
-//   var audio = new Audio(songs[0]);
+  //   var audio = new Audio(songs[0]);
   // audio.play();
 
-  audio.addEventListener("loadeddata", () => {
-    //   let duration=audio.duration;
-    //     console.log(duration);
-    console.log(audio.duration, audio.currentSrc, audio.currentTime);
-  });
+  // audio.addEventListener("loadeddata", () => {
+  //   //   let duration=audio.duration;
+  //   //     console.log(duration);
+  //   console.log(audio.duration, audio.currentSrc, audio.currentTime);
+  // });
+
+//adding event listener to play and pause button
+play.addEventListener("click", () => {
+  if (currentsong.paused) {
+    currentsong.play();
+    play.src = "pause.svg";
+  } else {
+    currentsong.pause();
+    play.src = "play.svg";
+  }
+});
+
 }
 
 main();
