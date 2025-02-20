@@ -20,20 +20,32 @@ async function getsongs() {
   return songs;
 }
 
-const playMusic = async (songname) => {
+const playMusic = (songname, pause = false) => {
   // get the song
-  // let audio = new Audio("/songs/"+ songname);
   currentsong.src = "/songs/" + songname;
-  currentsong.play();
-  document.querySelector(".songsinfo").innerHTML = songname;
+  
+  // If not paused, play the song immediately
+  if (!pause) {
+    currentsong.play();
+    document.getElementById("play").src = "pause.svg";
+  } else {
+    document.getElementById("play").src = "play.svg";
+  }
+  
+  document.querySelector(".songsinfo").innerHTML = decodeURI(songname);
   document.querySelector(".songstime").innerHTML = "00:00 / 00:00";
-  console.log("the song is " +songname);
-  play.src = "pause.svg";
+  console.log("the song is " + songname);
 };
+
 
 async function main() {
   // get the list of all song
   const songs = await getsongs();
+
+//Autoplay the first song
+  playMusic((songs[0]),true);
+
+
   console.log(songs);
 
   // adding songs to  the  .songslist
@@ -91,6 +103,29 @@ play.addEventListener("click", () => {
   }
 });
 
-}
 
+
+// listen for time update
+
+currentsong.addEventListener("timeupdate", () => {
+  // update the time
+  let currenttime = currentsong.currentTime;
+  let duration = currentsong.duration;
+  document.querySelector(".songstime").innerHTML =
+    Math.floor(currenttime / 60) +
+    ":" +
+    Math.floor(currenttime % 60) +
+    " / " +
+    Math.floor(duration / 60) +
+    ":" +
+    Math.floor(duration % 60);
+});
+
+
+//seekbar functionality
+
+}  
+
+
+// call the main function
 main();
